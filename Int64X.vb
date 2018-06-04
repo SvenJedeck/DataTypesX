@@ -12,16 +12,16 @@ Namespace SjSd.SystemArea
             Implements IEquatable(Of Int64X)
             Implements IConvertible
 
-            Private _NothingDealing As RuleSet
+            Private _Rules As RuleSet
 
             Public Property Rules As RuleSet
                 Get
 
-                    If _NothingDealing Is Nothing Then _NothingDealing = New RuleSet
-                    Return _NothingDealing
+                    If _Rules Is Nothing Then _Rules = New RuleSet
+                    Return _Rules
                 End Get
                 Set
-                    _NothingDealing = Value
+                    _Rules = Value
                 End Set
             End Property
 
@@ -162,7 +162,7 @@ Namespace SjSd.SystemArea
 
 
             ' AREA: (Identic Value) (Long / Int64)
-            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int64) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int64) As BooleanX
 
                 Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.ValueComparing.ErrorRule)
 
@@ -172,14 +172,14 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
-                        Return CBool(left.ToZero = right)
+                        Return CType(left.ToZero = right, BooleanX)
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If left.Value Is Nothing Then
-                            Return False
+                            Return CType(False, BooleanX)
                         Else
-                            Return CBool(left.ToZero = right)
+                            Return CType((left.ToZero = right), BooleanX)
                         End If
 
                 End Select
@@ -405,7 +405,7 @@ Namespace SjSd.SystemArea
             End Operator
 
             ' Long / Int64
-            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int64) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int64) As BooleanX
                 Return Not (left = right)
             End Operator
             Public Shared Operator <>(ByVal left As Int64, ByVal right As Int64X) As Boolean

@@ -2,9 +2,6 @@
 
 Namespace SjSd.SystemArea
 
-
-
-
     Partial Public Class DataTypes
 
 
