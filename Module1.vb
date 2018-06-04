@@ -8,10 +8,10 @@ Module Module1
     Sub Main()
 
 
-        Dim MyOwnInt As IntX = 10
-        Dim a2 As IntX = 2
-        Dim aDouble As IntX = -2.6
-        Dim aN As IntX = Nothing
+        Dim MyOwnInt As Int64X = 10
+        Dim a2 As Int64X = 2
+        Dim aDouble As Int64X = -2.6
+        Dim aN As Int64X = Nothing
 
 
         Dim MyInt16 As Int16 = 2

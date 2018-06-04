@@ -4,13 +4,11 @@ Namespace SjSd.SystemArea
 
 
 
+
     Partial Public Class DataTypes
 
 
         Public Class RuleSet
-
-
-
 
 
             Public Enum ErrorRaisingTypes

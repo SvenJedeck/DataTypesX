@@ -7,9 +7,9 @@ Namespace SjSd.SystemArea
 
     Partial Public Class DataTypes
 
-        Public Structure IntX
-            Implements IComparable(Of IntX)
-            Implements IEquatable(Of IntX)
+        Public Structure Int64X
+            Implements IComparable(Of Int64X)
+            Implements IEquatable(Of Int64X)
             Implements IConvertible
 
             Private _NothingDealing As RuleSet
@@ -77,11 +77,11 @@ Namespace SjSd.SystemArea
 
             End Function
 
-            Public Function CompareTo(ByVal other As IntX) As Integer Implements IComparable(Of IntX).CompareTo
+            Public Function CompareTo(ByVal other As Int64X) As Integer Implements IComparable(Of Int64X).CompareTo
                 Return CInt(Me.Value - other.Value)
             End Function
 
-            Public Overloads Function Equals(ByVal other As IntX) As Boolean Implements IEquatable(Of IntX).Equals
+            Public Overloads Function Equals(ByVal other As Int64X) As Boolean Implements IEquatable(Of Int64X).Equals
                 Return CBool(Me.Value = other.Value)
             End Function
 
@@ -90,7 +90,7 @@ Namespace SjSd.SystemArea
             End Function
 
             Public Overrides Function Equals(ByVal obj As Object) As Boolean
-                If TypeOf obj Is IntX Then Return CType(obj, IntX) = Me Else Return False
+                If TypeOf obj Is Int64X Then Return CType(obj, Int64X) = Me Else Return False
             End Function
 
 
@@ -155,14 +155,14 @@ Namespace SjSd.SystemArea
 
             ' AREA: (Identic Value)
 
-            Public Shared Operator =(ByVal left As IntX, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int64X) As Boolean
                 Return CBool(left.Value = right.Value)
             End Operator
 
 
 
             ' AREA: (Identic Value) (Long / Int64)
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Int64) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int64) As Boolean
 
                 Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.ValueComparing.ErrorRule)
 
@@ -186,7 +186,7 @@ Namespace SjSd.SystemArea
 
             End Operator
 
-            Public Shared Operator =(ByVal left As Int64, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Int64, ByVal right As Int64X) As Boolean
 
                 Call CheckErrorXRight(If(IsNothing(left), True, False), If(IsNothing(right.Value), True, False), right.Rules.ValueComparing.ErrorRule)
 
@@ -211,7 +211,7 @@ Namespace SjSd.SystemArea
 
             End Operator
 
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Int64?) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int64?) As Boolean
 
                 Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.ValueComparing.ErrorRule)
 
@@ -252,7 +252,7 @@ Namespace SjSd.SystemArea
 
             End Operator
 
-            Public Shared Operator =(ByVal left As Int64?, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Int64?, ByVal right As Int64X) As Boolean
 
                 Call CheckErrorXRight(If(IsNothing(left), True, False), If(IsNothing(right.Value), True, False), right.Rules.ValueComparing.ErrorRule)
 
@@ -296,95 +296,95 @@ Namespace SjSd.SystemArea
 
 
             ' AREA: (Identic Value) (All other then Int64)
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Int32) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int32) As Boolean
                 Return left = CType(right, Int64?)
             End Operator
-            Public Shared Operator =(ByVal left As Int32, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Int32, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64?) = right
             End Operator
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Int32?) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int32?) As Boolean
                 Return left = CType(right, Int64?)
             End Operator
-            Public Shared Operator =(ByVal left As Int32?, ByVal right As IntX) As Boolean
-                Return CType(left, Int64?) = right
-            End Operator
-
-
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Int16) As Boolean
-                Return left = CType(right, Int64?)
-            End Operator
-            Public Shared Operator =(ByVal left As Int16, ByVal right As IntX) As Boolean
-                Return CType(left, Int64?) = right
-            End Operator
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Int16?) As Boolean
-                Return left = CType(right, Int64?)
-            End Operator
-            Public Shared Operator =(ByVal left As Int16?, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Int32?, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64?) = right
             End Operator
 
 
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Decimal) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int16) As Boolean
+                Return left = CType(right, Int64?)
+            End Operator
+            Public Shared Operator =(ByVal left As Int16, ByVal right As Int64X) As Boolean
+                Return CType(left, Int64?) = right
+            End Operator
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Int16?) As Boolean
+                Return left = CType(right, Int64?)
+            End Operator
+            Public Shared Operator =(ByVal left As Int16?, ByVal right As Int64X) As Boolean
+                Return CType(left, Int64?) = right
+            End Operator
+
+
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Decimal) As Boolean
                 Return left = CType(right, Int64)
             End Operator
-            Public Shared Operator =(ByVal left As Decimal, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Decimal, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64) = right
             End Operator
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Decimal?) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Decimal?) As Boolean
                 Return left = CType(right, Int64)
             End Operator
-            Public Shared Operator =(ByVal left As Decimal?, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Decimal?, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64) = right
             End Operator
 
 
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Double) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Double) As Boolean
                 Return left = CType(right, Int64)
             End Operator
-            Public Shared Operator =(ByVal left As Double, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Double, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64) = right
             End Operator
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Double?) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Double?) As Boolean
                 Return left = CType(right, Int64)
             End Operator
-            Public Shared Operator =(ByVal left As Double?, ByVal right As IntX) As Boolean
-                Return CType(left, Int64) = right
-            End Operator
-
-
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Single) As Boolean
-                Return left = CType(right, Int64)
-            End Operator
-            Public Shared Operator =(ByVal left As Single, ByVal right As IntX) As Boolean
-                Return CType(left, Int64) = right
-            End Operator
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Single?) As Boolean
-                Return left = CType(right, Int64)
-            End Operator
-            Public Shared Operator =(ByVal left As Single?, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Double?, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64) = right
             End Operator
 
 
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Boolean) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Single) As Boolean
                 Return left = CType(right, Int64)
             End Operator
-            Public Shared Operator =(ByVal left As Boolean, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Single, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64) = right
             End Operator
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Boolean?) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Single?) As Boolean
                 Return left = CType(right, Int64)
             End Operator
-            Public Shared Operator =(ByVal left As Boolean?, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Single?, ByVal right As Int64X) As Boolean
+                Return CType(left, Int64) = right
+            End Operator
+
+
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Boolean) As Boolean
+                Return left = CType(right, Int64)
+            End Operator
+            Public Shared Operator =(ByVal left As Boolean, ByVal right As Int64X) As Boolean
+                Return CType(left, Int64) = right
+            End Operator
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Boolean?) As Boolean
+                Return left = CType(right, Int64)
+            End Operator
+            Public Shared Operator =(ByVal left As Boolean?, ByVal right As Int64X) As Boolean
                 Return CType(left, Int64) = right
             End Operator
 
 
             ' Object
-            Public Shared Operator =(ByVal left As IntX, ByVal right As Object) As Boolean
+            Public Shared Operator =(ByVal left As Int64X, ByVal right As Object) As Boolean
                 Throw New InvalidCastException("Cant compare given parameter. // Type: " & right.GetType.ToString & " >> .ToString: " & right.ToString & " with IntX")
             End Operator
-            Public Shared Operator =(ByVal left As Object, ByVal right As IntX) As Boolean
+            Public Shared Operator =(ByVal left As Object, ByVal right As Int64X) As Boolean
                 Throw New InvalidCastException("Cant compare given parameter. // Type: " & left.GetType.ToString & " >> .ToString: " & left.ToString & " with IntX")
             End Operator
 
@@ -400,117 +400,117 @@ Namespace SjSd.SystemArea
 
             ' AREA: (NOT Identic Value)
 
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
             ' Long / Int64
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Int64) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int64) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Int64, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Int64, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Int64?) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int64?) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Int64?, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Int64?, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
             ' Integer / Int32
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Int32) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int32) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Int32, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Int32, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Int32?) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int32?) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Int32?, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Int32?, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
             ' Short / Int16
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Int16) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int16) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Int16, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Int16, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Int16?) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Int16?) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Int16?, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Int16?, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
             ' Decimal
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Decimal) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Decimal) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Decimal, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Decimal, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Decimal?) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Decimal?) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Decimal?, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Decimal?, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
 
             ' Double
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Double) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Double) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Double, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Double, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Double?) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Double?) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Double?, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Double?, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
 
             ' Single
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Single) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Single) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Single, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Single, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Single?) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Single?) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Single?, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Single?, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
 
             ' Boolean
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Boolean) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Boolean) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Boolean, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Boolean, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Boolean?) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Boolean?) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Boolean?, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Boolean?, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
 
             ' Object
-            Public Shared Operator <>(ByVal left As IntX, ByVal right As Object) As Boolean
+            Public Shared Operator <>(ByVal left As Int64X, ByVal right As Object) As Boolean
                 Return Not (left = right)
             End Operator
-            Public Shared Operator <>(ByVal left As Object, ByVal right As IntX) As Boolean
+            Public Shared Operator <>(ByVal left As Object, ByVal right As Int64X) As Boolean
                 Return Not (left = right)
             End Operator
 
@@ -528,16 +528,16 @@ Namespace SjSd.SystemArea
             ' AREA: (PLUS)
 #Region " + -"
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Int64X) As Int64X
 
                 If left.Value Is Nothing AndAlso right.Value Is Nothing Then
-                    Return CType(0, IntX)
+                    Return CType(0, Int64X)
                 ElseIf left.Value Is Nothing Then
-                    Return CType(right.Value, IntX)
+                    Return CType(right.Value, Int64X)
                 ElseIf right.Value Is Nothing Then
-                    Return CType(left.Value, IntX)
+                    Return CType(left.Value, Int64X)
                 Else
-                    Return CType(left.Value + right.Value, IntX)
+                    Return CType(left.Value + right.Value, Int64X)
                 End If
 
             End Operator
@@ -549,7 +549,7 @@ Namespace SjSd.SystemArea
 #Region "PLUS Int64 / Long"
 
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Int64) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Int64) As Int64X
 
                 Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.Calculating.OpPlusMinus.ErrorRule)
 
@@ -559,21 +559,21 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
-                        Return New IntX(left.ToZero + right) With {.Rules = left.Rules}
+                        Return New Int64X(left.ToZero + right) With {.Rules = left.Rules}
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If left.Value Is Nothing Then
-                            Return New IntX(right) With {.Rules = left.Rules}
+                            Return New Int64X(right) With {.Rules = left.Rules}
                         Else
-                            Return New IntX(left.Value + right) With {.Rules = left.Rules}
+                            Return New Int64X(left.Value + right) With {.Rules = left.Rules}
                         End If
 
                 End Select
 
             End Operator
 
-            Public Shared Operator +(ByVal left As Int64, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Int64, ByVal right As Int64X) As Int64X
 
                 Call CheckErrorXRight(If(IsNothing(left), True, False), If(IsNothing(right.Value), True, False), right.Rules.Calculating.OpPlusMinus.ErrorRule)
 
@@ -583,21 +583,21 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
-                        Return New IntX(left + right.ToZero) With {.Rules = right.Rules}
+                        Return New Int64X(left + right.ToZero) With {.Rules = right.Rules}
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If right.Value Is Nothing Then
-                            Return New IntX(left) With {.Rules = right.Rules}
+                            Return New Int64X(left) With {.Rules = right.Rules}
                         Else
-                            Return New IntX(left + right.Value) With {.Rules = right.Rules}
+                            Return New Int64X(left + right.Value) With {.Rules = right.Rules}
                         End If
 
                 End Select
 
             End Operator
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Int64?) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Int64?) As Int64X
 
                 Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.Calculating.OpPlusMinus.ErrorRule)
 
@@ -608,28 +608,28 @@ Namespace SjSd.SystemArea
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
                         If right Is Nothing Then
-                            Return New IntX(left.ToZero) With {.Rules = left.Rules}
+                            Return New Int64X(left.ToZero) With {.Rules = left.Rules}
                         Else
-                            Return New IntX(left.ToZero + right) With {.Rules = left.Rules}
+                            Return New Int64X(left.ToZero + right) With {.Rules = left.Rules}
                         End If
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If left.Value Is Nothing And right Is Nothing Then
-                            Return New IntX(right) With {.Rules = left.Rules}
+                            Return New Int64X(right) With {.Rules = left.Rules}
                         ElseIf right Is Nothing Then
                             Return left
                         ElseIf left.Value Is Nothing Then
-                            Return New IntX(right) With {.Rules = left.Rules}
+                            Return New Int64X(right) With {.Rules = left.Rules}
                         Else
-                            Return New IntX(left.Value + right) With {.Rules = left.Rules}
+                            Return New Int64X(left.Value + right) With {.Rules = left.Rules}
                         End If
 
                 End Select
 
             End Operator
 
-            Public Shared Operator +(ByVal left As Int64?, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Int64?, ByVal right As Int64X) As Int64X
 
 
                 Call CheckErrorXRight(If(IsNothing(left), True, False), If(IsNothing(right.Value), True, False), right.Rules.Calculating.OpPlusMinus.ErrorRule)
@@ -641,21 +641,21 @@ Namespace SjSd.SystemArea
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
                         If left Is Nothing Then
-                            Return New IntX(right.ToZero) With {.Rules = right.Rules}
+                            Return New Int64X(right.ToZero) With {.Rules = right.Rules}
                         Else
-                            Return New IntX(left + right.ToZero) With {.Rules = right.Rules}
+                            Return New Int64X(left + right.ToZero) With {.Rules = right.Rules}
                         End If
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If right.Value Is Nothing And left Is Nothing Then
-                            Return New IntX(left) With {.Rules = right.Rules}
+                            Return New Int64X(left) With {.Rules = right.Rules}
                         ElseIf left Is Nothing Then
                             Return right
                         ElseIf right.Value Is Nothing Then
-                            Return New IntX(left) With {.Rules = right.Rules}
+                            Return New Int64X(left) With {.Rules = right.Rules}
                         Else
-                            Return New IntX(left + right.Value) With {.Rules = right.Rules}
+                            Return New Int64X(left + right.Value) With {.Rules = right.Rules}
                         End If
 
                 End Select
@@ -666,81 +666,81 @@ Namespace SjSd.SystemArea
 
             ' AREA: (PLUS) (All other then Int64)
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Int32) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Int32) As Int64X
                 Return left + CType(right, Int64)
             End Operator
-            Public Shared Operator +(ByVal left As Int32, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Int32, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) + right
             End Operator
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Int32?) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Int32?) As Int64X
                 Return left + CType(right, Int64?)
             End Operator
-            Public Shared Operator +(ByVal left As Int32?, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Int32?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) + right
             End Operator
 
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Int16) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Int16) As Int64X
                 Return left + CType(right, Int64)
             End Operator
-            Public Shared Operator +(ByVal left As Int16, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Int16, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) + right
             End Operator
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Int16?) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Int16?) As Int64X
                 Return left + CType(right, Int64?)
             End Operator
-            Public Shared Operator +(ByVal left As Int16?, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Int16?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) + right
             End Operator
 
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Decimal) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Decimal) As Int64X
                 Return left + CType(right, Int64)
             End Operator
-            Public Shared Operator +(ByVal left As Decimal, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Decimal, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) + right
             End Operator
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Decimal?) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Decimal?) As Int64X
                 Return left + CType(right, Int64?)
             End Operator
-            Public Shared Operator +(ByVal left As Decimal?, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Decimal?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) + right
             End Operator
 
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Double) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Double) As Int64X
                 Return left + CType(right, Int64)
             End Operator
-            Public Shared Operator +(ByVal left As Double, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Double, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) + right
             End Operator
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Double?) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Double?) As Int64X
                 Return left + CType(right, Int64?)
             End Operator
-            Public Shared Operator +(ByVal left As Double?, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Double?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) + right
             End Operator
 
 
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Single) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Single) As Int64X
                 Return left + CType(right, Int64)
             End Operator
-            Public Shared Operator +(ByVal left As Single, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Single, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) + right
             End Operator
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Single?) As IntX
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Single?) As Int64X
                 Return left + CType(right, Int64?)
             End Operator
-            Public Shared Operator +(ByVal left As Single?, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Single?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) + right
             End Operator
 
             ' TODO: Bool addieren
-            Public Shared Operator +(ByVal left As IntX, ByVal right As Boolean) As Boolean
+            Public Shared Operator +(ByVal left As Int64X, ByVal right As Boolean) As Boolean
                 Throw New NotImplementedException()
                 ' If CType(left.Value, Boolean) + CType(right, Boolean) = True Then Return True Else Return False
             End Operator
-            Public Shared Operator +(ByVal left As Boolean, ByVal right As IntX) As IntX
+            Public Shared Operator +(ByVal left As Boolean, ByVal right As Int64X) As Int64X
                 Throw New NotImplementedException()
                 ' Return CType(CType(left, Long?) + right.Value, IntX)
             End Operator
@@ -755,12 +755,12 @@ Namespace SjSd.SystemArea
             ' AREA: (MINUS)
 
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Int64X) As Int64X
             End Operator
 
 
             ' AREA: (MINUS) (Int64)
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Int64) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Int64) As Int64X
 
                 Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.Calculating.OpPlusMinus.ErrorRule)
 
@@ -770,21 +770,21 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
-                        Return New IntX(left.ToZero - right) With {.Rules = left.Rules}
+                        Return New Int64X(left.ToZero - right) With {.Rules = left.Rules}
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If left.Value Is Nothing Then
-                            Return New IntX(right) With {.Rules = left.Rules}
+                            Return New Int64X(right) With {.Rules = left.Rules}
                         Else
-                            Return New IntX(left.Value - right) With {.Rules = left.Rules}
+                            Return New Int64X(left.Value - right) With {.Rules = left.Rules}
                         End If
 
                 End Select
 
             End Operator
 
-            Public Shared Operator -(ByVal left As Int64, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Int64, ByVal right As Int64X) As Int64X
 
                 Call CheckErrorXRight(If(IsNothing(left), True, False), If(IsNothing(right.Value), True, False), right.Rules.Calculating.OpPlusMinus.ErrorRule)
 
@@ -794,21 +794,21 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
-                        Return New IntX(left - right.ToZero) With {.Rules = right.Rules}
+                        Return New Int64X(left - right.ToZero) With {.Rules = right.Rules}
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If right.Value Is Nothing Then
-                            Return New IntX(left) With {.Rules = right.Rules}
+                            Return New Int64X(left) With {.Rules = right.Rules}
                         Else
-                            Return New IntX(left - right.Value) With {.Rules = right.Rules}
+                            Return New Int64X(left - right.Value) With {.Rules = right.Rules}
                         End If
 
                 End Select
 
             End Operator
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Int64?) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Int64?) As Int64X
 
                 Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.Calculating.OpPlusMinus.ErrorRule)
 
@@ -819,28 +819,28 @@ Namespace SjSd.SystemArea
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
                         If right Is Nothing Then
-                            Return New IntX(left.ToZero) With {.Rules = left.Rules}
+                            Return New Int64X(left.ToZero) With {.Rules = left.Rules}
                         Else
-                            Return New IntX(left.ToZero - right) With {.Rules = left.Rules}
+                            Return New Int64X(left.ToZero - right) With {.Rules = left.Rules}
                         End If
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If left.Value Is Nothing And right Is Nothing Then
-                            Return New IntX(right) With {.Rules = left.Rules}
+                            Return New Int64X(right) With {.Rules = left.Rules}
                         ElseIf right Is Nothing Then
                             Return left
                         ElseIf left.Value Is Nothing Then
-                            Return New IntX(right) With {.Rules = left.Rules}
+                            Return New Int64X(right) With {.Rules = left.Rules}
                         Else
-                            Return New IntX(left.Value + right) With {.Rules = left.Rules}
+                            Return New Int64X(left.Value + right) With {.Rules = left.Rules}
                         End If
 
                 End Select
 
             End Operator
 
-            Public Shared Operator -(ByVal left As Int64?, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Int64?, ByVal right As Int64X) As Int64X
 
                 Call CheckErrorXRight(If(IsNothing(left), True, False), If(IsNothing(right.Value), True, False), right.Rules.Calculating.OpPlusMinus.ErrorRule)
 
@@ -851,21 +851,21 @@ Namespace SjSd.SystemArea
                     Case RuleSet.Calculate.PlusMinus.OperationRules.AsZero
 
                         If left Is Nothing Then
-                            Return New IntX(right.ToZero) With {.Rules = right.Rules}
+                            Return New Int64X(right.ToZero) With {.Rules = right.Rules}
                         Else
-                            Return New IntX(left - right.ToZero) With {.Rules = right.Rules}
+                            Return New Int64X(left - right.ToZero) With {.Rules = right.Rules}
                         End If
 
                     Case RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
 
                         If right.Value Is Nothing And left Is Nothing Then
-                            Return New IntX(left) With {.Rules = right.Rules}
+                            Return New Int64X(left) With {.Rules = right.Rules}
                         ElseIf left Is Nothing Then
                             Return right
                         ElseIf right.Value Is Nothing Then
-                            Return New IntX(left) With {.Rules = right.Rules}
+                            Return New Int64X(left) With {.Rules = right.Rules}
                         Else
-                            Return New IntX(left - right.Value) With {.Rules = right.Rules}
+                            Return New Int64X(left - right.Value) With {.Rules = right.Rules}
                         End If
 
                 End Select
@@ -875,83 +875,83 @@ Namespace SjSd.SystemArea
 
             ' AREA: (MINUS) (All other then Int64)
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Int32) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Int32) As Int64X
                 Return left - CType(right, Int64)
             End Operator
-            Public Shared Operator -(ByVal left As Int32, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Int32, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) - right
             End Operator
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Int32?) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Int32?) As Int64X
                 Return left - CType(right, Int64?)
             End Operator
-            Public Shared Operator -(ByVal left As Int32?, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Int32?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) - right
             End Operator
 
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Int16) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Int16) As Int64X
                 Return left - CType(right, Int64)
             End Operator
-            Public Shared Operator -(ByVal left As Int16, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Int16, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) - right
             End Operator
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Int16?) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Int16?) As Int64X
                 Return left - CType(right, Int64?)
             End Operator
-            Public Shared Operator -(ByVal left As Int16?, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Int16?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) - right
             End Operator
 
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Decimal) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Decimal) As Int64X
                 Return left - CType(right, Int64)
             End Operator
-            Public Shared Operator -(ByVal left As Decimal, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Decimal, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) - right
             End Operator
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Decimal?) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Decimal?) As Int64X
                 Return left - CType(right, Int64?)
             End Operator
-            Public Shared Operator -(ByVal left As Decimal?, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Decimal?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) - right
             End Operator
 
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Double) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Double) As Int64X
                 Return left - CType(right, Int64)
             End Operator
-            Public Shared Operator -(ByVal left As Double, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Double, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) - right
             End Operator
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Double?) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Double?) As Int64X
                 Return left - CType(right, Int64?)
             End Operator
-            Public Shared Operator -(ByVal left As Double?, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Double?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) - right
             End Operator
 
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Single) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Single) As Int64X
                 Return left - CType(right, Int64)
             End Operator
-            Public Shared Operator -(ByVal left As Single, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Single, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64) - right
             End Operator
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Single?) As IntX
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Single?) As Int64X
                 Return left - CType(right, Int64?)
             End Operator
-            Public Shared Operator -(ByVal left As Single?, ByVal right As IntX) As IntX
+            Public Shared Operator -(ByVal left As Single?, ByVal right As Int64X) As Int64X
                 Return CType(left, Int64?) - right
             End Operator
 
 
 
-            Public Shared Operator -(ByVal left As IntX, ByVal right As Boolean) As IntX
-                Return CType(left.Value - CType(right, Long?), IntX)
+            Public Shared Operator -(ByVal left As Int64X, ByVal right As Boolean) As Int64X
+                Return CType(left.Value - CType(right, Long?), Int64X)
             End Operator
 
-            Public Shared Operator -(ByVal left As Boolean, ByVal right As IntX) As IntX
-                Return CType(CType(left, Long?) - right.Value, IntX)
+            Public Shared Operator -(ByVal left As Boolean, ByVal right As Int64X) As Int64X
+                Return CType(CType(left, Long?) - right.Value, Int64X)
             End Operator
 
 
@@ -961,14 +961,14 @@ Namespace SjSd.SystemArea
 
             ' AREA: (MULTI) 
 
-            Public Shared Operator *(ByVal left As IntX, ByVal right As IntX) As IntX
-                Return CType(left.Value * right.Value, IntX)
+            Public Shared Operator *(ByVal left As Int64X, ByVal right As Int64X) As Int64X
+                Return CType(left.Value * right.Value, Int64X)
             End Operator
 
 
             ' AREA: (MULTI) (Int64)
 
-            Public Shared Operator *(ByVal left As IntX, ByVal right As Int64) As IntX
+            Public Shared Operator *(ByVal left As Int64X, ByVal right As Int64) As Int64X
 
                 'Call CheckErrorXLeft(If(IsNothing(left.Value), True, False), If(IsNothing(right), True, False), left.Rules.Calculating.ErrorRule)
 
@@ -992,7 +992,7 @@ Namespace SjSd.SystemArea
 
 
 
-            Public Shared Operator *(ByVal left As Int64, ByVal right As IntX) As IntX
+            Public Shared Operator *(ByVal left As Int64, ByVal right As Int64X) As Int64X
 
 
 
@@ -1003,82 +1003,82 @@ Namespace SjSd.SystemArea
 
             ' AREA: (DIVISION) 
 
-            Public Shared Operator /(ByVal left As IntX, ByVal right As IntX) As Double
+            Public Shared Operator /(ByVal left As Int64X, ByVal right As Int64X) As Double
                 Return CDbl(left.Value / right.Value)
             End Operator
 
-            Public Shared Operator \(ByVal left As IntX, ByVal right As IntX) As IntX
-                Return CType(left.Value \ right.Value, IntX)
+            Public Shared Operator \(ByVal left As Int64X, ByVal right As Int64X) As Int64X
+                Return CType(left.Value \ right.Value, Int64X)
             End Operator
 
-            Public Shared Operator Mod(ByVal left As IntX, ByVal right As IntX) As IntX
-                Return CType(left.Value Mod right.Value, IntX)
+            Public Shared Operator Mod(ByVal left As Int64X, ByVal right As Int64X) As Int64X
+                Return CType(left.Value Mod right.Value, Int64X)
             End Operator
 
-            Public Shared Operator And(ByVal left As IntX, ByVal right As IntX) As IntX
-                Return CType(left.Value And right.Value, IntX)
+            Public Shared Operator And(ByVal left As Int64X, ByVal right As Int64X) As Int64X
+                Return CType(left.Value And right.Value, Int64X)
             End Operator
 
-            Public Shared Operator Or(ByVal left As IntX, ByVal right As IntX) As IntX
-                Return CType(left.Value Or right.Value, IntX)
+            Public Shared Operator Or(ByVal left As Int64X, ByVal right As Int64X) As Int64X
+                Return CType(left.Value Or right.Value, Int64X)
             End Operator
 
-            Public Shared Operator Xor(ByVal left As IntX, ByVal right As IntX) As IntX
-                Return CType(left.Value Xor right.Value, IntX)
+            Public Shared Operator Xor(ByVal left As Int64X, ByVal right As Int64X) As Int64X
+                Return CType(left.Value Xor right.Value, Int64X)
             End Operator
 
-            Public Shared Operator ^(ByVal left As IntX, ByVal right As IntX) As Double
+            Public Shared Operator ^(ByVal left As Int64X, ByVal right As Int64X) As Double
                 Return CDbl(left.Value ^ right.Value)
             End Operator
 
-            Public Shared Operator <(ByVal left As IntX, ByVal right As IntX) As Boolean
+            Public Shared Operator <(ByVal left As Int64X, ByVal right As Int64X) As Boolean
                 Return CBool(left.Value < right.Value)
             End Operator
 
-            Public Shared Operator >(ByVal left As IntX, ByVal right As IntX) As Boolean
+            Public Shared Operator >(ByVal left As Int64X, ByVal right As Int64X) As Boolean
                 Return CBool(left.Value > right.Value)
             End Operator
 
-            Public Shared Operator <=(ByVal left As IntX, ByVal right As IntX) As Boolean
+            Public Shared Operator <=(ByVal left As Int64X, ByVal right As Int64X) As Boolean
                 Return CBool(left.Value <= right.Value)
             End Operator
 
-            Public Shared Operator >=(ByVal left As IntX, ByVal right As IntX) As Boolean
+            Public Shared Operator >=(ByVal left As Int64X, ByVal right As Int64X) As Boolean
                 Return CBool(left.Value >= right.Value)
             End Operator
 
 
 
 
-            Public Shared Widening Operator CType(ByVal left As IntX) As Int64
+            Public Shared Widening Operator CType(ByVal left As Int64X) As Int64
                 Return CType(left.Value, Int64)
             End Operator
-            Public Shared Widening Operator CType(ByVal left As IntX) As Int64?
+            Public Shared Widening Operator CType(ByVal left As Int64X) As Int64?
                 Return left.Value
             End Operator
 
-            Public Shared Widening Operator CType(ByVal left As IntX) As Int32
+            Public Shared Widening Operator CType(ByVal left As Int64X) As Int32
                 Return CType(left.Value, Int32)
             End Operator
-            Public Shared Widening Operator CType(ByVal left As IntX) As Int32?
+            Public Shared Widening Operator CType(ByVal left As Int64X) As Int32?
                 Return CType(left.Value, Int32?)
             End Operator
 
 
 
 
-            Public Shared Narrowing Operator CType(ByVal left As Int64) As IntX
-                Return New IntX(left)
+            Public Shared Narrowing Operator CType(ByVal left As Int64) As Int64X
+                Return New Int64X(left)
             End Operator
-            Public Shared Narrowing Operator CType(ByVal left As Int64?) As IntX
-                Return New IntX(left)
+            Public Shared Narrowing Operator CType(ByVal left As Int64?) As Int64X
+                Return New Int64X(left)
             End Operator
 
-            Public Shared Narrowing Operator CType(ByVal left As Int32) As IntX
-                Return New IntX(left)
+            Public Shared Narrowing Operator CType(ByVal left As Int32) As Int64X
+                Return New Int64X(left)
             End Operator
-            Public Shared Narrowing Operator CType(ByVal left As Int32?) As IntX
-                Return New IntX(left)
+            Public Shared Narrowing Operator CType(ByVal left As Int32?) As Int64X
+                Return New Int64X(left)
             End Operator
 
 
