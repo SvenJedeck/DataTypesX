@@ -233,7 +233,7 @@ Namespace SjSd.SystemArea
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
                         If left.Value Is Nothing Then
-                            Return New BooleanX(New Boolean? = Nothing)
+                            Return New BooleanX = Nothing
                         Else
                             Return New BooleanX(left.Value = right)
                         End If
@@ -262,17 +262,23 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
+                        If right.Value Is Nothing Then
+                            Return New BooleanX = Nothing
+
+                        Else
+                            Return New BooleanX(left = right.Value)
+                        End If
 
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
-                        Return CBool(left = right.ToZero)
+                        Return CType(left = right.ToZero, BooleanX)
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If right.Value Is Nothing Then
-                            Return False
+                            Return New BooleanX = False
                         Else
-                            Return CBool(left = right.ToZero)
+                            Return CType(left = right.ToZero, BooleanX)
                         End If
 
                 End Select
@@ -287,34 +293,40 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
+                        If left.Value Is Nothing Or right Is Nothing Then
+                            Return New BooleanX = Nothing
+                        Else
+                            Return New BooleanX(left.Value = right)
+                        End If
+
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
                         If left.Value Is Nothing And right Is Nothing Then
-                            Return True
+                            Return New BooleanX = True
 
                         ElseIf left.Value Is Nothing Then
-                            Return CBool(0 = right)
+                            Return CType(0 = right, BooleanX)
 
                         ElseIf right Is Nothing Then
-                            Return CBool(left.Value = 0)
+                            Return CType(left.Value = 0, BooleanX)
 
                         Else
-                            Return CBool(left.Value = right)
+                            Return CType(left.Value = right, BooleanX)
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If left.Value Is Nothing And right Is Nothing Then
-                            Return True
+                            Return New BooleanX = True
 
                         ElseIf left.Value Is Nothing Then
-                            Return False
+                            Return New BooleanX = False
 
                         ElseIf right Is Nothing Then
-                            Return False
+                            Return New BooleanX = False
 
                         Else
-                            Return CBool(left.Value = right)
+                            Return CType(left.Value = right, BooleanX)
                         End If
                 End Select
 
@@ -328,34 +340,40 @@ Namespace SjSd.SystemArea
 
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
+                        If left Is Nothing Or right.Value Is Nothing Then
+                            Return New BooleanX = Nothing
+                        Else
+                            Return New BooleanX(left = right.Value)
+                        End If
+
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
                         If left Is Nothing And right.Value Is Nothing Then
-                            Return True
+                            Return New BooleanX = True
 
                         ElseIf left Is Nothing Then
-                            Return CBool(0 = right.Value)
+                            Return CType(0 = right.Value, BooleanX)
 
                         ElseIf right.Value Is Nothing Then
-                            Return CBool(left = 0)
+                            Return CType(left = 0, BooleanX)
 
                         Else
-                            Return CBool(left = right.Value)
+                            Return CType(left = right.Value, BooleanX)
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If left Is Nothing And right.Value Is Nothing Then
-                            Return True
+                            Return New BooleanX = True
 
                         ElseIf left Is Nothing Then
-                            Return False
+                            Return New BooleanX = False
 
                         ElseIf right.Value Is Nothing Then
-                            Return False
+                            Return New BooleanX = False
 
                         Else
-                            Return CBool(left = right.Value)
+                            Return CType(left = right.Value, BooleanX)
                         End If
 
                 End Select
@@ -363,7 +381,6 @@ Namespace SjSd.SystemArea
             End Operator
 
 
-            ' AREA: (Identic Value) (All other then Int64)
             Public Shared Operator =(ByVal left As Int64X, ByVal right As Int32) As BooleanX
                 Return left = CType(right, Int64?)
             End Operator

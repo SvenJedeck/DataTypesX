@@ -7,11 +7,12 @@ Module Module1
 
     Sub Main()
 
+        Dim XBool_ValueNothing As BooleanX = Nothing
 
-        Dim MyOwnInt As Int64X = 10
-        Dim a2 As Int64X = 2
-        Dim aDouble As Int64X = -2.6
-        Dim aN As Int64X = Nothing
+        Dim XInt64 As Int64X = 10
+        Dim XInt64_Value2 As Int64X = 2
+        Dim XInt64_DoubleInput As Int64X = -2.6
+        Dim XInt64_ValueNothing As Int64X = Nothing
 
 
         Dim MyInt16 As Int16 = 2
@@ -30,12 +31,12 @@ Module Module1
         Dim MySingleN As Single? = Nothing
         Dim MyBoolN As Boolean? = Nothing
 
-        aN.Rules.Calculating.OpPlusMinus.OperationRule = RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
+        XInt64_ValueNothing.Rules.Calculating.OpPlusMinus.OperationRule = RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
         'a1.Rules.Calculating.OpPlusMinus.ErrorRule = RuleSet.ErrorRaisingTypes.RaiseErrOneOfThem
 
 
 
-        Dim tmp = MyDouble - MyOwnInt
+        Dim tmp = MyDouble - XInt64
 
         Stop
 
@@ -61,31 +62,31 @@ Module Module1
         'tmp = aDouble <> MyInt64
         'tmp = aN <> MyInt64
 
-        MyOwnInt.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
-        a2.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
-        aDouble.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
-        aN.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
+        XInt64.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
+        XInt64_Value2.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
+        XInt64_DoubleInput.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
+        XInt64_ValueNothing.Rules.ValueComparing.OperationRule = RuleSet.ValueCompare.OperationRules.AsZero
 
-        tmp = MyInt64N = MyOwnInt
-        tmp = MyInt64N = a2
-        tmp = MyInt64N = aDouble
-        tmp = MyInt64N = aN
+        tmp = MyInt64N = XInt64
+        tmp = MyInt64N = XInt64_Value2
+        tmp = MyInt64N = XInt64_DoubleInput
+        tmp = MyInt64N = XInt64_ValueNothing
 
-        tmp = MyInt64 = MyOwnInt
-        tmp = MyInt64 = a2
-        tmp = MyInt64 = aDouble
-        tmp = MyInt64 = aN
+        tmp = MyInt64 = XInt64
+        tmp = MyInt64 = XInt64_Value2
+        tmp = MyInt64 = XInt64_DoubleInput
+        tmp = MyInt64 = XInt64_ValueNothing
 
 
-        tmp = MyOwnInt = MyInt64N
-        tmp = a2 = MyInt64N
-        tmp = aDouble = MyInt64N
-        tmp = aN = MyInt64
+        tmp = XInt64 = MyInt64N
+        tmp = XInt64_Value2 = MyInt64N
+        tmp = XInt64_DoubleInput = MyInt64N
+        tmp = XInt64_ValueNothing = MyInt64
 
-        tmp = MyOwnInt = MyInt64
-        tmp = a2 = MyInt64
-        tmp = aDouble = MyInt64
-        tmp = aN = MyInt64
+        tmp = XInt64 = MyInt64
+        tmp = XInt64_Value2 = MyInt64
+        tmp = XInt64_DoubleInput = MyInt64
+        tmp = XInt64_ValueNothing = MyInt64
 
 
 
