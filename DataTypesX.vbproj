@@ -88,11 +88,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BooleanX.vb" />
-    <Compile Include="DataTypes.vb" />
-    <Compile Include="Int64X.vb" />
-    <Compile Include="LimitedInt.vb" />
-    <Compile Include="Module1.vb" />
+    <Compile Include="Code\DataTypes\BooleanX.vb" />
+    <Compile Include="Code\DataTypesX.vb" />
+    <Compile Include="Code\DataTypes\Int64X.vb" />
+    <Compile Include="Code\Interfaces\IAcDataTypesX.vb" />
+    <Compile Include="Code\Interfaces\IDataTypeX.vb" />
+    <Compile Include="Code\MISC\LimitedInt.vb" />
+    <Compile Include="Code\Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -141,5 +143,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

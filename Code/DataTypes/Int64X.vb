@@ -5,12 +5,17 @@
 Namespace SjSd.SystemArea
 
 
-    Partial Public Class DataTypes
+    Partial Public Class DataTypesX
+        Inherits IAcDataTypesX
 
-        Public Structure Int64X
+        Public Class Int64X
+
+
             Implements IComparable(Of Int64X)
             'Implements IEquatable(Of Int64X)
             Implements IConvertible
+
+            Implements IDataTypeX(Of Int64X)
 
             Private _Rules As RuleSet
 
@@ -27,6 +32,10 @@ Namespace SjSd.SystemArea
 
             Public ReadOnly Property Value() As Int64?
 
+
+            Public Sub New()
+                Me.Value = Nothing
+            End Sub
 
             Public Sub New(ByVal value As Int64)
                 Me.Value = CType(value, Int64?)
@@ -131,12 +140,14 @@ Namespace SjSd.SystemArea
             ''' If Not Value Is Nothing then Function returns Value, else ZERO
             ''' </summary>
             ''' <returns></returns>
-            Public Function ToZero() As Int64?
+            Public Function ToZero() As Int64X Implements IDataTypeX(Of Int64X).ToZero
 
-                If Value Is Nothing Then Return 0
-                Return Value
+                If Me._Value Is Nothing Then Return New Int64X(0) With {.Rules = Me.Rules}
+                Return Me
 
             End Function
+
+
 
             Public Function CompareTo(ByVal other As Int64X) As Integer Implements IComparable(Of Int64X).CompareTo
                 Return CInt(Me.Value - other.Value)
@@ -156,51 +167,6 @@ Namespace SjSd.SystemArea
 
 
 
-
-
-            Private Shared Sub CheckErrorXLeft(leftXIsNothing As Boolean, rightOtherIsNothing As Boolean, errorRuleSet As RuleSet.ErrorRaisingTypes)
-
-                Select Case errorRuleSet
-
-                    Case RuleSet.ErrorRaisingTypes.NoError
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOneOfThem
-                        If leftXIsNothing Or rightOtherIsNothing Then Throw New Exception("Any operation with NULL/NOTHING is forbidden by Error Rule")
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOnlyBoth
-                        If leftXIsNothing And rightOtherIsNothing Then Throw New Exception("Operation with both operands with NULL/NOTHING is forbidden by Error Rule")
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOnlyMe
-                        If rightOtherIsNothing Then Throw New Exception("Operation with primitive DataTypes with NULL/NOTHING is forbidden by Error Rule")
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOnlyOther
-                        If leftXIsNothing Then Throw New Exception("Operation with IntX with NULL/NOTHING is forbidden by Error Rule")
-
-                End Select
-
-            End Sub
-
-            Private Shared Sub CheckErrorXRight(leftOtherIsNothing As Boolean, rightXIsNothing As Boolean, errorRuleSet As RuleSet.ErrorRaisingTypes)
-
-                Select Case errorRuleSet
-
-                    Case RuleSet.ErrorRaisingTypes.NoError
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOneOfThem
-                        If leftOtherIsNothing Or rightXIsNothing Then Throw New Exception("Any operation with NULL/NOTHING is forbidden by Error Rule")
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOnlyBoth
-                        If leftOtherIsNothing And rightXIsNothing Then Throw New Exception("Operation with both operands with NULL/NOTHING is forbidden by Error Rule")
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOnlyMe
-                        If rightXIsNothing Then Throw New Exception("Operation with IntX with NULL/NOTHING is forbidden by Error Rule")
-
-                    Case RuleSet.ErrorRaisingTypes.RaiseErrOnlyOther
-                        If leftOtherIsNothing Then Throw New Exception("Operation with primitive with NULL/NOTHING is forbidden by Error Rule")
-
-                End Select
-
-            End Sub
 
 
 
@@ -233,21 +199,21 @@ Namespace SjSd.SystemArea
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
                         If left.Value Is Nothing Then
-                            Return New BooleanX = Nothing
+                            Return New BooleanX With {.Rules = left.Rules} = Nothing
                         Else
-                            Return New BooleanX(left.Value = right)
+                            Return New BooleanX(CBool(left.Value = right)) With {.Rules = left.Rules}
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
-                        Return New BooleanX(left.ToZero = right)
+                        Return New BooleanX(CBool(left.ToZero.Value = right)) With {.Rules = left.Rules}
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If left.Value Is Nothing Then
-                            Return CType(False, BooleanX)
+                            Return New BooleanX(False) With {.Rules = left.Rules}
                         Else
-                            Return CType((left.Value = right), BooleanX)
+                            Return New BooleanX(CBool(left.Value = right)) With {.Rules = left.Rules}
                         End If
 
                 End Select
@@ -263,22 +229,21 @@ Namespace SjSd.SystemArea
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
                         If right.Value Is Nothing Then
-                            Return New BooleanX = Nothing
-
+                            Return New BooleanX With {.Rules = right.Rules} = Nothing
                         Else
-                            Return New BooleanX(left = right.Value)
+                            Return New BooleanX(left = right.Value) With {.Rules = right.Rules}
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
-                        Return CType(left = right.ToZero, BooleanX)
+                        Return New BooleanX(CBool(left = right.ToZero.Value)) With {.Rules = right.Rules}
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If right.Value Is Nothing Then
-                            Return New BooleanX = False
+                            Return New BooleanX(False) With {.Rules = right.Rules}
                         Else
-                            Return CType(left = right.ToZero, BooleanX)
+                            Return New BooleanX(CBool(left = right.ToZero.Value)) With {.Rules = right.Rules}
                         End If
 
                 End Select
@@ -294,40 +259,41 @@ Namespace SjSd.SystemArea
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
                         If left.Value Is Nothing Or right Is Nothing Then
-                            Return New BooleanX = Nothing
+                            Return New BooleanX With {.Rules = left.Rules} = Nothing
                         Else
-                            Return New BooleanX(left.Value = right)
+                            Return New BooleanX(CBool(left.Value = right)) With {.Rules = left.Rules}
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
                         If left.Value Is Nothing And right Is Nothing Then
-                            Return New BooleanX = True
+                            Return New BooleanX With {.Rules = left.Rules} = True
 
                         ElseIf left.Value Is Nothing Then
-                            Return CType(0 = right, BooleanX)
+                            Return New BooleanX(CBool(0 = right)) With {.Rules = left.Rules}
 
                         ElseIf right Is Nothing Then
-                            Return CType(left.Value = 0, BooleanX)
+                            Return New BooleanX(CBool(left.Value = 0)) With {.Rules = left.Rules}
 
                         Else
-                            Return CType(left.Value = right, BooleanX)
+                            Return New BooleanX(CBool(left.Value = right)) With {.Rules = left.Rules}
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If left.Value Is Nothing And right Is Nothing Then
-                            Return New BooleanX = True
+                            Return New BooleanX(True) With {.Rules = left.Rules}
 
                         ElseIf left.Value Is Nothing Then
-                            Return New BooleanX = False
+                            Return New BooleanX(False) With {.Rules = left.Rules}
 
                         ElseIf right Is Nothing Then
-                            Return New BooleanX = False
+                            Return New BooleanX(False) With {.Rules = left.Rules}
 
                         Else
-                            Return CType(left.Value = right, BooleanX)
+                            Return New BooleanX(CBool(left.Value = right)) With {.Rules = left.Rules}
                         End If
+
                 End Select
 
             End Operator
@@ -341,44 +307,46 @@ Namespace SjSd.SystemArea
                     Case RuleSet.ValueCompare.OperationRules.AlwaysNothing
 
                         If left Is Nothing Or right.Value Is Nothing Then
-                            Return New BooleanX = Nothing
+                            Return New BooleanX With {.Rules = right.Rules} = Nothing
                         Else
-                            Return New BooleanX(left = right.Value)
+                            Return New BooleanX(CBool(left = right.Value)) With {.Rules = right.Rules}
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.AsZero
 
                         If left Is Nothing And right.Value Is Nothing Then
-                            Return New BooleanX = True
+                            Return New BooleanX With {.Rules = right.Rules} = True
 
                         ElseIf left Is Nothing Then
-                            Return CType(0 = right.Value, BooleanX)
+                            Return New BooleanX(CBool(0 = right.Value)) With {.Rules = right.Rules}
 
                         ElseIf right.Value Is Nothing Then
-                            Return CType(left = 0, BooleanX)
+                            Return New BooleanX(CBool(left = 0)) With {.Rules = right.Rules}
 
                         Else
-                            Return CType(left = right.Value, BooleanX)
+                            Return New BooleanX(CBool(left = right.Value)) With {.Rules = right.Rules}
                         End If
 
                     Case RuleSet.ValueCompare.OperationRules.JustIgnore
 
                         If left Is Nothing And right.Value Is Nothing Then
-                            Return New BooleanX = True
+                            Return New BooleanX(True) With {.Rules = right.Rules}
 
                         ElseIf left Is Nothing Then
-                            Return New BooleanX = False
+                            Return New BooleanX(False) With {.Rules = right.Rules}
 
                         ElseIf right.Value Is Nothing Then
-                            Return New BooleanX = False
+                            Return New BooleanX(False) With {.Rules = right.Rules}
 
                         Else
-                            Return CType(left = right.Value, BooleanX)
+                            Return New BooleanX(CBool(left = right.Value)) With {.Rules = right.Rules}
                         End If
 
                 End Select
 
             End Operator
+
+
 
 
             Public Shared Operator =(ByVal left As Int64X, ByVal right As Int32) As BooleanX
@@ -387,12 +355,19 @@ Namespace SjSd.SystemArea
             Public Shared Operator =(ByVal left As Int32, ByVal right As Int64X) As BooleanX
                 Return CType(left, Int64?) = right
             End Operator
+            'Public Shared Operator =(ByVal left As Int32X, ByVal right As Int64X) As BooleanX
+            '    Return CType(left, Int64?) = right
+            'End Operator
+
             Public Shared Operator =(ByVal left As Int64X, ByVal right As Int32?) As BooleanX
                 Return left = CType(right, Int64?)
             End Operator
             Public Shared Operator =(ByVal left As Int32?, ByVal right As Int64X) As BooleanX
                 Return CType(left, Int64?) = right
             End Operator
+            'Public Shared Operator =(ByVal left As Int64X, ByVal right As Int32X) As BooleanX
+            '    Return left = CType(right, Int64?)
+            'End Operator
 
 
             Public Shared Operator =(ByVal left As Int64X, ByVal right As Int16) As BooleanX
@@ -1345,10 +1320,11 @@ Namespace SjSd.SystemArea
                 Throw New NotImplementedException()
             End Function
 
+
 #End Region ' IConvertible
 
 
-        End Structure
+        End Class
 
 
     End Class

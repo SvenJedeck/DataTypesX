@@ -2,7 +2,7 @@
 
 Namespace SjSd.SystemArea
 
-    Partial Public Class DataTypes
+    Partial Public Class DataTypesX
 
 
         Public Class RuleSet
@@ -106,8 +106,8 @@ Namespace SjSd.SystemArea
                     ''' <returns></returns>
                     Public Property OperationRuleX As OperationRules = OperationRules.JustIgnore
 
-                    Public Property ErrorRule As DataTypes.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
-                    Public Property ErrorRuleX As DataTypes.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
+                    Public Property ErrorRule As DataTypesX.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
+                    Public Property ErrorRuleX As DataTypesX.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
 
 
                 End Class
@@ -187,8 +187,8 @@ Namespace SjSd.SystemArea
                 ''' <returns></returns>
                 Public Property OperationRuleX As OperationRules = OperationRules.JustIgnore
 
-                Public Property ErrorRule As DataTypes.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
-                Public Property ErrorRuleX As DataTypes.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
+                Public Property ErrorRule As DataTypesX.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
+                Public Property ErrorRuleX As DataTypesX.RuleSet.ErrorRaisingTypes = ErrorRaisingTypes.NoError
 
             End Class
 

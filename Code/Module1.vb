@@ -1,18 +1,24 @@
 ﻿Option Strict Off
 
-Imports SjSd.SystemArea.DataTypes
+Imports SjSd.SystemArea.DataTypesX
 
 
 Module Module1
 
     Sub Main()
 
-        Dim XBool_ValueNothing As BooleanX = Nothing
+
+
+        Dim XBool_ValueNothing As BooleanX = 12
 
         Dim XInt64 As Int64X = 10
+
+        Dim sdjhflk = XBool_ValueNothing.Rules.Equals(XInt64.Rules)
+
         Dim XInt64_Value2 As Int64X = 2
         Dim XInt64_DoubleInput As Int64X = -2.6
         Dim XInt64_ValueNothing As Int64X = Nothing
+
 
 
         Dim MyInt16 As Int16 = 2
@@ -34,6 +40,7 @@ Module Module1
         XInt64_ValueNothing.Rules.Calculating.OpPlusMinus.OperationRule = RuleSet.Calculate.PlusMinus.OperationRules.JustIgnore
         'a1.Rules.Calculating.OpPlusMinus.ErrorRule = RuleSet.ErrorRaisingTypes.RaiseErrOneOfThem
 
+        Dim XInt64_ValueNothing1 As Int64X = MyDouble + MySingle
 
 
         Dim tmp = MyDouble - XInt64

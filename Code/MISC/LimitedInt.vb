@@ -2,7 +2,7 @@
 
 
 
-    Partial Public Class DataTypes
+    Partial Public Class DataTypesX
         Structure LimitedInt
             Implements IComparable(Of LimitedInt)
             Implements IEquatable(Of LimitedInt)
